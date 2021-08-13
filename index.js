@@ -57,18 +57,14 @@ function getAllMovieTitles(movies) {
 function getHighestMetascore(movies) {
   // Declare a variable and assign it to 0
   let highestMovie = 0;
-  let emptyArr = [];
+  let metaArr = [];
   // Create a for loop that loops through each movie to find the highest score
-  for (let i = 0; i < movies.length; i++) {
-    // Declare a variable that holds score
-    const movie = movies[i];
-    // convert metascore's to numbers
-    let metaNum = Number(movie.metascore);
-    // Create an if statement to determine the highest score
-    if (movie.metascore) {
-      emptyArr.push(metaNum);
-      let highestScore = Math.max(emptyArr);
-      return highestScore;
+  for (const movie of movies) {
+    let metaScoreNum = Number(movie.metascore);
+    metaArr.push(metaScoreNum);
+    let highScore = Math.max(...metaArr);
+    if (metaScoreNum >= highScore) {
+      highestMovie = metaScoreNum;
     }
   }
   return highestMovie;
@@ -249,17 +245,37 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
  *  //> "Incredibles 2"
  */
 function getBiggestBoxOfficeMovie(movies) {
-  // This function returns the name of the movie with the highest 'boxOffice' amount.
-  // Declare a variable and assign it to an empty string
-  let biggestMovie = " ";
-  // Create a for loop that loops through each movie
-  for (let i = 0; i < movies.length; i++) {
-    const movie = movies[i];
-    // Create an if statement to determine the movie with the hgihest 'boxOffice' amount.
-    if (movie.boxOffice) {
-      return (biggestMovie = movie.title);
+  let emptyStr = " ";
+  let newArr = [];
+
+  // Create a for loop to loop through each movie
+  for (const movie of movies) {
+    //console.log(movie.boxOffice);
+    // This code takes off the $
+    let boxStr = movie.boxOffice.substring(1);
+    //console.log(boxStr)
+
+    // This code removes the COMMAS
+    let boxNum = boxStr.replace(/,/g, "");
+    //console.log(boxNum)
+
+    // This code covers the strings to NUMBERS
+    let boxOfficeNums = Number(boxNum);
+    //console.log(boxOfficeNums)
+
+    // This code puts all the NUMBERS into one array
+    newArr.push(boxOfficeNums);
+    //console.log(newStr)
+
+    let highestBoxOfficeNum = Math.max(...newArr);
+    //console.log(highestBoxOfficeNum)
+
+    if (boxOfficeNums >= highestBoxOfficeNum) {
+      return (emptyStr = movie.title);
+      //console.log(emptyStr);
     }
   }
+
   //return the variable
   return null;
 }
