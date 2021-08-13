@@ -86,18 +86,17 @@ function getHighestMetascore(movies) {
 function getAverageIMDBRating(movies) {
   // Declare a variable that holds a number
   let averageRating = 0;
-  //let newArr = [];
-  // Create a for of loop that loops through each movie and access the IMDB rating
+
   for (const movie of movies) {
-    // Declare a variable to hold the number
-    ratingNum = Number(movie.idmbRating);
-    // Create an if statement that determines the average
-    if (ratingNum) {
-      // Add all the ratings together
-      averageRating += ratingNum;
-      // Divide by the number of movies and return average
-      let total = averageRating / movie.length;
-      return total;
+    let rating = Number(movie.imdbRating);
+    //console.log(rating)
+    if (rating) {
+      averageRating += rating;
+      //console.log(averageRating)
+      averageRating / movie.length;
+      //return averageRating.toFixed(1) * 1;
+      return (Math.floor(100 * averageRating) / 1000).toFixed(3) / 0.1;
+      //return averageRating;
     }
   }
   // return the variable that holds the number if movies array is empty
@@ -120,13 +119,17 @@ function countByRating(movies) {
   // This function returns an object where keys: movie ratings values: number of movies in array with that same rating
   // Declare a variable and assign it to an empty object
   let newObj = {};
-  // Create a for loop that loops through each movie and find the same ratings
+  let movieRatings = 1;
+  let numOfMovies = 1;
+
   for (let i = 0; i < movies.length; i++) {
-    // Declare a variable that holds each movie
     const movie = movies[i];
-    // Create an if statement that finds all movies with the same ratings
     if (movie.rated === "G") {
-      newObj[movie.rated] = 3;
+      newObj[movie.rated] = movieRatings++;
+    } else if (movie.rated === "PG") {
+      newObj[movie.rated] = numOfMovies++;
+    } else if (movie.rated === "PG-13") {
+      newObj[movie.rated] = movieRatings++;
     }
   }
   return newObj;
