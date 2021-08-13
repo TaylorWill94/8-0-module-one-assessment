@@ -55,24 +55,26 @@ function getAllMovieTitles(movies) {
  *  //> 96
  */
 function getHighestMetascore(movies) {
-  // This function returns the highest `metascore` among all movies.
   // Declare a variable and assign it to 0
   let highestMovie = 0;
-  // Convert the metascore into a number
-
-  // Create a variable that holds the highest metascore
-  let highestScore = Math.max(movies.metascore);
+  let emptyArr = [];
   // Create a for loop that loops through each movie to find the highest score
   for (let i = 0; i < movies.length; i++) {
     // Declare a variable that holds score
     const movie = movies[i];
+    // convert metascore's to numbers
+    let metaNum = Number(movie.metascore);
     // Create an if statement to determine the highest score
-    if (movie.metascore > highestScore) {
-      highestMovie = movie.metascore;
+    if (movie.metascore) {
+      emptyArr.push(metaNum);
+      let highestScore = Math.max(emptyArr);
+      return highestScore;
     }
   }
   return highestMovie;
 }
+
+//getHighestMetascore(movies);
 
 /**
  * getAverageIMDBRating()
@@ -86,20 +88,26 @@ function getHighestMetascore(movies) {
  *  //> 7.76
  */
 function getAverageIMDBRating(movies) {
-  // This function gets the average of all IMDB ratings
   // Declare a variable that holds a number
   let averageRating = 0;
+  //let newArr = [];
   // Create a for of loop that loops through each movie and access the IMDB rating
   for (const movie of movies) {
+    // Declare a variable to hold the number
+    ratingNum = Number(movie.idmbRating);
     // Create an if statement that determines the average
-    if (movie.imdbrating) {
+    if (ratingNum) {
       // Add all the ratings together
-      // Divide by the number of movies
+      averageRating += ratingNum;
+      // Divide by the number of movies and return average
+      let total = averageRating / movie.length;
+      return total;
     }
   }
-  // return the variable that holds the number
+  // return the variable that holds the number if movies array is empty
   return averageRating;
 }
+//getAverageIMDBRating("Toy Story");
 
 /**
  * countByRating()
@@ -143,17 +151,12 @@ function countByRating(movies) {
     };
  */
 function findById(movies, id) {
-  // This function returns a movie object based on the ID
-  // Return null if inputted id does not match
-  // Declare a variable and assign it to an object
-  let foundMovie = {};
-  // Create a for loop that loops through each movie to find the matching id
-  for (let i = 0; i < movies.length; i++) {
-    // Declare a variable and assign it to hold each movie
-    const movie = movies[i];
-    // Create an if statement to compare the id
-    if (movie.imbdID === id) {
-      return foundMovie[movie.title];
+  let newObj = {};
+  //let noMovie = null;
+  // Create a for of loop that loops through each movie
+  for (const movie of movies) {
+    if (movie.imdbID === id) {
+      return (newObj[movie.title] = movie);
     }
   }
   return null;
