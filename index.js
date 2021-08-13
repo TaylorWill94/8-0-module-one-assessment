@@ -190,9 +190,10 @@ function filterByGenre(movies, genre) {
   // Create a for of loop that goes through each movie
   for (const movie of movies) {
     // Create an if statement to find all movies that are of a certain genre
-    if (movie.genre === genre) {
+    //let upperCase = genre.toUpperCase();
+    if (movie.genre.includes(genre) && genre.toUpperCase()) {
       // If movies are the same, push them into the array
-      sameGenre.push(movie.title);
+      sameGenre.push(movie);
     }
   }
   // return the array
@@ -227,9 +228,10 @@ function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
   let movieRelease = [];
   // Create a for loop that loops through each movie
   for (const movie of movies) {
-    if (movie.released.includes(year)) {
-      //newMovie.push(movie.title);
-      movieRelease.push(movie.title);
+    let newArr = movie.released.split(" ");
+    let newNum = Number(newArr[newArr.length - 1]);
+    if (newNum <= year) {
+      movieRelease.push(movie);
     }
   }
   return movieRelease;
