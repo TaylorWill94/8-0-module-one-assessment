@@ -57,12 +57,21 @@ function getAllMovieTitles(movies) {
 function getHighestMetascore(movies) {
   // This function returns the highest `metascore` among all movies.
   // Declare a variable and assign it to 0
-  let highestScore = 0;
+  let highestMovie = 0;
+  // Convert the metascore into a number
+
+  // Create a variable that holds the highest metascore
+  let highestScore = Math.max(movies.metascore);
   // Create a for loop that loops through each movie to find the highest score
   for (let i = 0; i < movies.length; i++) {
     // Declare a variable that holds score
-    const score = movies[i];
+    const movie = movies[i];
+    // Create an if statement to determine the highest score
+    if (movie.metascore > highestScore) {
+      highestMovie = movie.metascore;
+    }
   }
+  return highestMovie;
 }
 
 /**
@@ -76,7 +85,21 @@ function getHighestMetascore(movies) {
  *  getAverageIMDBRating(movies);
  *  //> 7.76
  */
-function getAverageIMDBRating() {}
+function getAverageIMDBRating(movies) {
+  // This function gets the average of all IMDB ratings
+  // Declare a variable that holds a number
+  let averageRating = 0;
+  // Create a for of loop that loops through each movie and access the IMDB rating
+  for (const movie of movies) {
+    // Create an if statement that determines the average
+    if (movie.imdbrating) {
+      // Add all the ratings together
+      // Divide by the number of movies
+    }
+  }
+  // return the variable that holds the number
+  return averageRating;
+}
 
 /**
  * countByRating()
@@ -89,7 +112,21 @@ function getAverageIMDBRating() {}
  *  countByRating(movies);
  *  //> { G: 3, PG: 7 }
  */
-function countByRating() {}
+function countByRating(movies) {
+  // This function returns an object where keys: movie ratings values: number of movies in array with that same rating
+  // Declare a variable and assign it to an empty object
+  let newObj = {};
+  // Create a for loop that loops through each movie and find the same ratings
+  for (let i = 0; i < movies.length; i++) {
+    // Declare a variable that holds each movie
+    const movie = movies[i];
+    // Create an if statement that finds all movies with the same ratings
+    if (movie.rated === "G") {
+      newObj[movie.rated] = 3;
+    }
+  }
+  return newObj;
+}
 
 /**
  * findById()
@@ -105,7 +142,22 @@ function countByRating() {}
       // Toy Story 4
     };
  */
-function findById() {}
+function findById(movies, id) {
+  // This function returns a movie object based on the ID
+  // Return null if inputted id does not match
+  // Declare a variable and assign it to an object
+  let foundMovie = {};
+  // Create a for loop that loops through each movie to find the matching id
+  for (let i = 0; i < movies.length; i++) {
+    // Declare a variable and assign it to hold each movie
+    const movie = movies[i];
+    // Create an if statement to compare the id
+    if (movie.imbdID === id) {
+      return foundMovie[movie.title];
+    }
+  }
+  return null;
+}
 
 /**
  * filterByGenre()
@@ -127,7 +179,22 @@ function findById() {}
  *  filterByGenre(movies, "Horror")
  *  //> []
  */
-function filterByGenre() {}
+function filterByGenre(movies, genre) {
+  // This function returns all movie objects with a matching genre
+  // If no movies match return an empty array
+  // Declare a variable that holds an empty array
+  let sameGenre = [];
+  // Create a for of loop that goes through each movie
+  for (const movie of movies) {
+    // Create an if statement to find all movies that are of a certain genre
+    if (movie.genre === genre) {
+      // If movies are the same, push them into the array
+      sameGenre.push(movie.title);
+    }
+  }
+  // return the array
+  return sameGenre;
+}
 
 /**
  * getAllMoviesReleasedAtOrBeforeYear()
@@ -151,7 +218,19 @@ function filterByGenre() {}
       }
     ];
  */
-function getAllMoviesReleasedAtOrBeforeYear() {}
+function getAllMoviesReleasedAtOrBeforeYear(movies, year) {
+  // This function returns all movies released equal to or less than the given year.
+  // Declare a variable that holds an empty array
+  let movieRelease = [];
+  // Create a for loop that loops through each movie
+  for (const movie of movies) {
+    if (movie.released.includes(year)) {
+      //newMovie.push(movie.title);
+      movieRelease.push(movie.title);
+    }
+  }
+  return movieRelease;
+}
 
 /**
  * getBiggestBoxOfficeMovie()
@@ -164,7 +243,21 @@ function getAllMoviesReleasedAtOrBeforeYear() {}
  *  getBiggestBoxOfficeMovie(movies);
  *  //> "Incredibles 2"
  */
-function getBiggestBoxOfficeMovie() {}
+function getBiggestBoxOfficeMovie(movies) {
+  // This function returns the name of the movie with the highest 'boxOffice' amount.
+  // Declare a variable and assign it to an empty string
+  let biggestMovie = " ";
+  // Create a for loop that loops through each movie
+  for (let i = 0; i < movies.length; i++) {
+    const movie = movies[i];
+    // Create an if statement to determine the movie with the hgihest 'boxOffice' amount.
+    if (movie.boxOffice) {
+      return (biggestMovie = movie.title);
+    }
+  }
+  //return the variable
+  return null;
+}
 
 // Do not change anything below this line.
 module.exports = {
