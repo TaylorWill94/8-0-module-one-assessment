@@ -182,7 +182,7 @@ function findById(movies, id) {
  *  //> []
  */
 function filterByGenre(movies, genre) {
-  console.log(genre);
+  //console.log(genre);
   // This function returns all movie objects with a matching genre
   // If no movies match return an empty array
   // Declare a variable that holds an empty array
@@ -191,7 +191,10 @@ function filterByGenre(movies, genre) {
   for (const movie of movies) {
     // Create an if statement to find all movies that are of a certain genre
     //let upperCase = genre.toUpperCase();
-    if (movie.genre.includes(genre) && genre.toUpperCase()) {
+    if (
+      movie.genre.includes(genre) &&
+      genre[0].toUpperCase() + genre.slice(1)
+    ) {
       // If movies are the same, push them into the array
       sameGenre.push(movie);
     }
