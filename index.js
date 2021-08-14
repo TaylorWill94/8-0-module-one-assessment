@@ -182,6 +182,7 @@ function findById(movies, id) {
  *  //> []
  */
 function filterByGenre(movies, genre) {
+  console.log(genre);
   // This function returns all movie objects with a matching genre
   // If no movies match return an empty array
   // Declare a variable that holds an empty array
@@ -272,10 +273,12 @@ function getBiggestBoxOfficeMovie(movies) {
 
     let highestBoxOfficeNum = Math.max(...newArr);
     //console.log(highestBoxOfficeNum)
-
-    if (boxOfficeNums >= highestBoxOfficeNum) {
-      return (emptyStr = movie.title);
-      //console.log(emptyStr);
+    for (let i = 1; i < newArr.length; i++) {
+      const highest = newArr[i];
+      if (highest >= highestBoxOfficeNum) {
+        return (emptyStr = movie.title);
+        //console.log(emptyStr);
+      }
     }
   }
 
